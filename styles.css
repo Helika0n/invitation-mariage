@@ -32,8 +32,8 @@ body {
 .container:before, .container:after {
     content: "";
     position: absolute;
-    top: -20px;
-    left: -20px;
+    top: -30px;
+    left: -26px;
     width: 100px;
     height: 100px;
     background-image: url('goldenleaf.png');
@@ -43,10 +43,11 @@ body {
 }
 
 .container:after {
-    top: -20px;
-    right: -20px;
+    top: -30px;
+    right: -26px;
     left: auto;
-    transform: rotate(180deg);
+    transform: scaleX(-1);
+    transform:
 }
 
 /* Header */
