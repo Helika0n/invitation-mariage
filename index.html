@@ -12,7 +12,7 @@
     <div class="container">
         <header>
             <h1>Invitation de Mariage</h1>
-            <p class="subheading">Nous avons le plaisir de vous inviter au mariage de</p>
+            <p class="subheading">Nous avons le plaisir de vous inviter au mariage d'</p>
             <h2 class="names">Elodie & Jean-Benoit</h2>
             <p class="date">Le mercredi 27 Novembre 2024 & le samedi 30 Novembre 2024</p>
         </header>
@@ -54,6 +54,14 @@
                 <label><input type="checkbox" id="repas" name="repas"> Repas (30/11)</label><br>
                 <label><input type="checkbox" id="soiree" name="soiree"> Soirée (30/11)</label><br><br>
 
+                  <!-- Inputs for Adults and Children -->
+                <label for="adults">Nombre d'adultes :</label>
+                <input type="number" id="adults" name="adults" min="0" value="0"><br><br>
+
+                <label for="children">Nombre d'enfants :</label>
+                <input type="number" id="children" name="children" min="0" value="0"><br><br>
+
+
                 <button type="submit" class="button" onclick="submitForm(event)">Envoyer</button>
             </form>
         </div>
@@ -87,6 +95,10 @@
             let repas = document.getElementById("repas").checked ? "Oui" : "Non";
             let soiree = document.getElementById("soiree").checked ? "Oui" : "Non";
 
+            // Retrieve input values for adults and children
+            let adults = document.getElementById("adults").value;
+            let children = document.getElementById("children").value;
+
             // Generate email body
             let emailBody = `Cher Elodie et Jean-Benoit,%0D%0A%0D%0A`;
             emailBody += `Je vous confirme ma présence pour les événements suivants :%0D%0A%0D%0A`;
@@ -94,6 +106,8 @@
             emailBody += `- Cérémonie Laïque (30/11 16h00) : ${ceremonieLaique}%0D%0A`;
             emailBody += `- Repas (30/11) : ${repas}%0D%0A`;
             emailBody += `- Soirée (30/11) : ${soiree}%0D%0A%0D%0A`;
+            emailBody += `Nombre d'adultes : ${adults}%0D%0A`;
+            emailBody += `Nombre d'enfants : ${children}%0D%0A%0D%0A`;
             emailBody += `Meilleures salutations,%0D%0A[Votre nom]`;
 
             // Open email client with pre-filled data
