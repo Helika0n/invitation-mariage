@@ -81,7 +81,7 @@ section {
 
 h3 {
     font-size: 1.5rem;
-    color: gold;
+    color: rgb(202, 173, 6);;
     margin-bottom: 10px;
 }
 
@@ -92,7 +92,7 @@ p {
 }
 
 strong {
-    color: gold;
+    color: rgb(202, 173, 6);;
 }
 
 /* RSVP button */
