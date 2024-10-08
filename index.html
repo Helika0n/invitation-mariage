@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Invitation de Mariage</title>
+    <title>Mariage - Elodie & Jean-Benoit</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lato:wght@400;700&display=swap" rel="stylesheet"> <!-- Handwritten font -->
 </head>
@@ -35,12 +35,74 @@
         <section class="rsvp">
             <h3>RSVP</h3>
             <p>Merci de confirmer votre présence avant le <strong>30 Octobre 2024</strong>.</p>
-            <a href="mailto:elodie@elodieetjeanbenoit.be?subject=Confirmation%20de%20présence&body=Cher%20Elodie%20et%20Jean-Benoit,%0D%0A%0D%0AJe%20confirme%20ma%20présence%20à%20votre%20mariage%20le%2027%20Novembre%202024.%0D%0A%0D%0AMeilleures%20salutations,%0D%0AVotre%20Nom" class="button">Accepter l'invitation</a>
+            <button class="button" onclick="openModal()">Accepter l'invitation</button>
         </section>
 
         <footer>
             <p>Nous avons hâte de célébrer ces journées avec vous !</p>
         </footer>
     </div>
+
+     <!-- Modal -->
+     <div id="rsvpModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Confirmation de présence</h2>
+                <br/>
+                <label><input type="checkbox" id="ceremonie_commune" name="ceremonie_commune"> Cérémonie à la commune (27/11 14h00)</label><br>
+                <label><input type="checkbox" id="ceremonie_laique" name="ceremonie_laique"> Cérémonie Laïque (30/11 16h00)</label><br>
+                <label><input type="checkbox" id="repas" name="repas"> Repas (30/11)</label><br>
+                <label><input type="checkbox" id="soiree" name="soiree"> Soirée (30/11)</label><br><br>
+
+                <button type="submit" class="button" onclick="submitForm(event)">Envoyer</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Open modal
+        function openModal() {
+            document.getElementById("rsvpModal").style.display = "flex";
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById("rsvpModal").style.display = "none";
+        }
+
+        // Close modal if clicking outside of the modal
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("rsvpModal")) {
+                closeModal();
+            }
+        }
+
+        // Handle form submission and generate mailto link
+        function submitForm(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Retrieve checkbox values
+            let ceremonieCommune = document.getElementById("ceremonie_commune").checked ? "Oui" : "Non";
+            let ceremonieLaique = document.getElementById("ceremonie_laique").checked ? "Oui" : "Non";
+            let repas = document.getElementById("repas").checked ? "Oui" : "Non";
+            let soiree = document.getElementById("soiree").checked ? "Oui" : "Non";
+
+            // Generate email body
+            let emailBody = `Cher Elodie et Jean-Benoit,%0D%0A%0D%0A`;
+            emailBody += `Je vous confirme ma présence pour les événements suivants :%0D%0A%0D%0A`;
+            emailBody += `- Cérémonie à la commune (27/11 14h00) : ${ceremonieCommune}%0D%0A`;
+            emailBody += `- Cérémonie Laïque (30/11 16h00) : ${ceremonieLaique}%0D%0A`;
+            emailBody += `- Repas (30/11) : ${repas}%0D%0A`;
+            emailBody += `- Soirée (30/11) : ${soiree}%0D%0A%0D%0A`;
+            emailBody += `Meilleures salutations,%0D%0A[Votre nom]`;
+
+            // Open email client with pre-filled data
+            let mailtoLink = `mailto:elodie@elodieetjeanbenoit.be; jean-benoit@elodieetjeanbenoit.be?subject=Confirmation%20de%20présence&body=${emailBody}`;
+            window.location.href = mailtoLink;
+
+            // Close the modal after submission
+            closeModal();
+        }
+    </script>
 </body>
 </html>
